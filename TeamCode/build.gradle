@@ -20,8 +20,10 @@ android {
 }
 
 dependencies {
-    //Easy Open CV Dependency - Lucian
+    //EasyOpenCV Dependency - Lucian
     implementation 'org.openftc:easyopencv:1.5.2'
+    //AprilTag Dependency - Lucian
+    implementation 'org.openftc:apriltag:1.1.0'
 
     implementation project(':FtcRobotController')
     annotationProcessor files('lib/OpModeAnnotationProcessor.jar')
