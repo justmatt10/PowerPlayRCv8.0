@@ -20,6 +20,9 @@ android {
 }
 
 dependencies {
+    //Easy Open CV Dependency - Lucian
+    implementation 'org.openftc:easyopencv:1.5.2'
+
     implementation project(':FtcRobotController')
     annotationProcessor files('lib/OpModeAnnotationProcessor.jar')
 }

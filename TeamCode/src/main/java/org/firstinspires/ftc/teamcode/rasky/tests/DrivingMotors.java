@@ -8,7 +8,7 @@ import com.qualcomm.robotcore.hardware.HardwareMap;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-//Auth: Lucian
+//Author: Lucian
 public class DrivingMotors {
     public static DcMotorEx leftRear, rightRear, leftFront, rightFront;
     public static ArrayList<DcMotorEx> motors;

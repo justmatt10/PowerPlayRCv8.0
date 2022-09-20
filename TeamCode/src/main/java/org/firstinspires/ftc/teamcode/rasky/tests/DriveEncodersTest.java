@@ -3,7 +3,7 @@ package org.firstinspires.ftc.teamcode.rasky.tests;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
 
-//Auth: Lucian
+//Author: Lucian
 public class DriveEncodersTest extends LinearOpMode {
 
     DrivingMotors motors;
@@ -20,8 +20,7 @@ public class DriveEncodersTest extends LinearOpMode {
         }
 
         //This catches the stop button before the program starts
-        if (isStopRequested())
-            return;
+        if (isStopRequested()) return;
 
         //Main while loop that runs during the match
         while (opModeIsActive() && !isStopRequested()) {
