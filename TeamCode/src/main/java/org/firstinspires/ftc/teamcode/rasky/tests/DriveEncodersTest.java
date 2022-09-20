@@ -49,6 +49,7 @@ public class DriveEncodersTest extends LinearOpMode {
 
             }
 
+            telemetry.addData("Is Debug Mode On? : ", debugMode);
             telemetry.addData("LeftRear Encoder: ", motors.leftRear.getCurrentPosition());
             telemetry.addData("RightRear Encoder: ", motors.rightRear.getCurrentPosition());
             telemetry.addData("LeftFront Encoder: ", motors.leftFront.getCurrentPosition());

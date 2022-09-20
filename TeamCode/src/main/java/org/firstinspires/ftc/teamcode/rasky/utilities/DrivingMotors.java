@@ -13,8 +13,8 @@ public class DrivingMotors {
     public DcMotorEx leftRear, rightRear, leftFront, rightFront;
 
     /**
-     * This is a factory method that initializes each driving motor to be easily accessed from this
-     * class when testing.
+     * This method initializes each driving motor to be easily accessed from the
+     * object when testing.
      *
      * @param hardwareMap The hardware map passed from the OpMode calling
      * @param encoders    Boolean value that checks if motor encoders should be used or not
@@ -27,6 +27,7 @@ public class DrivingMotors {
         rightFront = hardwareMap.get(DcMotorEx.class, "rightFront");
 
         ArrayList<DcMotorEx> motors = new ArrayList<DcMotorEx>(Arrays.asList(leftRear, rightRear, leftFront, rightFront));
+
         //This initializes the motors with the given settings
         for (DcMotorEx motor : motors) {
             motor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
