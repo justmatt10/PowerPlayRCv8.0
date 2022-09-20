@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode.rasky.tests;
+package org.firstinspires.ftc.teamcode.rasky.utilities;
 
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
@@ -10,8 +10,7 @@ import java.util.Arrays;
 
 //Author: Lucian
 public class DrivingMotors {
-    public static DcMotorEx leftRear, rightRear, leftFront, rightFront;
-    public static ArrayList<DcMotorEx> motors;
+    public DcMotorEx leftRear, rightRear, leftFront, rightFront;
 
     /**
      * This is a factory method that initializes each driving motor to be easily accessed from this
@@ -21,13 +20,13 @@ public class DrivingMotors {
      * @param encoders    Boolean value that checks if motor encoders should be used or not
      * @param brakes      Boolean value that checks if the motors should brake or stop on their own
      */
-    public static void Init(HardwareMap hardwareMap, Boolean encoders, Boolean brakes) {
+    public void Init(HardwareMap hardwareMap, Boolean encoders, Boolean brakes) {
         leftRear = hardwareMap.get(DcMotorEx.class, "leftRear");
         rightRear = hardwareMap.get(DcMotorEx.class, "rightRear");
         leftFront = hardwareMap.get(DcMotorEx.class, "leftFront");
         rightFront = hardwareMap.get(DcMotorEx.class, "rightFront");
 
-        motors = new ArrayList<DcMotorEx>(Arrays.asList(leftRear, rightRear, leftFront, rightFront));
+        ArrayList<DcMotorEx> motors = new ArrayList<DcMotorEx>(Arrays.asList(leftRear, rightRear, leftFront, rightFront));
         //This initializes the motors with the given settings
         for (DcMotorEx motor : motors) {
             motor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
