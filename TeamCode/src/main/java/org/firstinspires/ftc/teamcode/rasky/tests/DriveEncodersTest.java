@@ -5,6 +5,7 @@ import com.qualcomm.robotcore.hardware.Gamepad;
 
 import org.firstinspires.ftc.teamcode.rasky.utilities.DebugDriveMode;
 import org.firstinspires.ftc.teamcode.rasky.utilities.DrivingMotors;
+import org.firstinspires.ftc.teamcode.rasky.utilities.MecanumDriveMode;
 
 
 //Author: Lucian
@@ -12,11 +13,13 @@ public class DriveEncodersTest extends LinearOpMode {
 
     DrivingMotors motors = new DrivingMotors();
     DebugDriveMode debugDriveMode;
+    MecanumDriveMode mecanumDriveMode;
 
     @Override
     public void runOpMode() throws InterruptedException {
         motors.Init(hardwareMap, true, true);
         debugDriveMode = new DebugDriveMode(motors);
+        mecanumDriveMode = new MecanumDriveMode(motors);
 
         //This while loop will run after initialization until the program starts or until stop
         //is pressed
@@ -41,12 +44,10 @@ public class DriveEncodersTest extends LinearOpMode {
                 debugMode = false;
             }
 
-            // TODO: Add a normal driving mode for the test
-
             if (debugMode) {
                 debugDriveMode.run(gamepad);
             } else {
-
+                mecanumDriveMode.run(gamepad);
             }
 
             telemetry.addData("Is Debug Mode On? : ", debugMode);
