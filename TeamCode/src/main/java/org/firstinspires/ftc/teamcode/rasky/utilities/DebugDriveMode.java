@@ -5,18 +5,18 @@ import com.qualcomm.robotcore.hardware.Gamepad;
 //Author: Lucian
 public class DebugDriveMode {
 
-    private final DrivingMotors motors;
+    DrivingMotors motors;
+    Gamepad gamepad;
 
-    public DebugDriveMode(DrivingMotors motors) {
+    public DebugDriveMode(DrivingMotors motors, Gamepad gamepad) {
         this.motors = motors;
+        this.gamepad = gamepad;
     }
 
     /**
      * Call this function asynchronously from the while in the OpMode
-     *
-     * @param gamepad The gamepad from the current OpMode
      */
-    public void run(Gamepad gamepad) {
+    public void run() {
         if (gamepad.y) {
             motors.rightFront.setPower(1.0);
         } else {

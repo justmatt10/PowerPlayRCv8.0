@@ -5,22 +5,23 @@ import com.qualcomm.robotcore.hardware.Gamepad;
 //Author: Lucian
 public class MecanumDriveMode {
 
-    private final DrivingMotors motors;
-    // Speed Multiplier
-    private final double speed = 1.0;
-    // If the Joystick has a lower value than this one the robot will not move
-    private final double controllerDeadzone = 0.15;
+    DrivingMotors motors;
+    Gamepad gamepad;
 
-    public MecanumDriveMode(DrivingMotors motors) {
+    // Speed Multiplier
+    final double speed = 1.0;
+    // If the Joystick has a lower value than this one the robot will not move
+    final double controllerDeadzone = 0.15;
+
+    public MecanumDriveMode(DrivingMotors motors, Gamepad gamepad) {
         this.motors = motors;
+        this.gamepad = gamepad;
     }
 
     /**
      * Call this function asynchronously from the while in the OpMode
-     *
-     * @param gamepad The gamepad from the current OpMode
      */
-    public void run(Gamepad gamepad) {
+    public void run() {
 
         double x = gamepad.left_stick_x; // Strafe, Horizontal Axis
         double y = -gamepad.left_stick_y; // Forward, Vertical Axis (joystick has +/- flipped)

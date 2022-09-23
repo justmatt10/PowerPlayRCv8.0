@@ -1,6 +1,7 @@
 package org.firstinspires.ftc.teamcode.rasky.tests;
 
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
+import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.Gamepad;
 
 import org.firstinspires.ftc.teamcode.rasky.utilities.DebugDriveMode;
@@ -9,17 +10,20 @@ import org.firstinspires.ftc.teamcode.rasky.utilities.MecanumDriveMode;
 
 
 //Author: Lucian
+@TeleOp(name = "DriveEncodersTest", group = "tests")
 public class DriveEncodersTest extends LinearOpMode {
 
     DrivingMotors motors = new DrivingMotors();
     DebugDriveMode debugDriveMode;
     MecanumDriveMode mecanumDriveMode;
+    Gamepad gamepad = gamepad1;
 
     @Override
     public void runOpMode() throws InterruptedException {
+
         motors.Init(hardwareMap, true, true);
-        debugDriveMode = new DebugDriveMode(motors);
-        mecanumDriveMode = new MecanumDriveMode(motors);
+        debugDriveMode = new DebugDriveMode(motors, gamepad);
+        mecanumDriveMode = new MecanumDriveMode(motors, gamepad);
 
         //This while loop will run after initialization until the program starts or until stop
         //is pressed
@@ -31,10 +35,8 @@ public class DriveEncodersTest extends LinearOpMode {
         //This catches the stop button before the program starts
         if (isStopRequested()) return;
 
-        //Main while loop that runs during the match
         boolean debugMode = false;
-        Gamepad gamepad = gamepad1;
-
+        //Main while loop that runs during the match
         while (opModeIsActive() && !isStopRequested()) {
 
             if (gamepad.right_bumper) {
@@ -45,9 +47,9 @@ public class DriveEncodersTest extends LinearOpMode {
             }
 
             if (debugMode) {
-                debugDriveMode.run(gamepad);
+                debugDriveMode.run();
             } else {
-                mecanumDriveMode.run(gamepad);
+                mecanumDriveMode.run();
             }
 
             telemetry.addData("Is Debug Mode On? : ", debugMode);
