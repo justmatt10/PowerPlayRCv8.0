@@ -13,10 +13,13 @@ public class MainDrivingOp extends LinearOpMode {
 
     DrivingMotors motors = new DrivingMotors();
     MecanumDriveMode mecanumDriveMode;
-    Gamepad drivingGamepad = gamepad1;
+    Gamepad drivingGamepad;
 
     @Override
     public void runOpMode() throws InterruptedException {
+
+        //Set the driving gamepad to the desired gamepad
+        drivingGamepad = gamepad1;
 
         motors.Init(hardwareMap, false, true);
         mecanumDriveMode = new MecanumDriveMode(motors, drivingGamepad);
@@ -24,7 +27,7 @@ public class MainDrivingOp extends LinearOpMode {
         //This while loop will run after initialization until the program starts or until stop
         //is pressed
         while (!isStopRequested() && !opModeIsActive()) {
-            telemetry.addData("Initialization Ready", null);
+            telemetry.addData("Initialization Ready", " ");
             telemetry.update();
         }
 

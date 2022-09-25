@@ -12,6 +12,8 @@ public class MecanumDriveMode {
     final double speed = 1.0;
     // If the Joystick has a lower value than this one the robot will not move
     final double controllerDeadzone = 0.15;
+    // If the robot should move in reverse or not
+    double reverse = 1.0;
 
     public MecanumDriveMode(DrivingMotors motors, Gamepad gamepad) {
         this.motors = motors;
@@ -27,8 +29,8 @@ public class MecanumDriveMode {
         double y = -gamepad.left_stick_y; // Forward, Vertical Axis (joystick has +/- flipped)
         double r = gamepad.right_stick_x; // Rotation, Horizontal Axis
 
-        x = addons(x) * 1.1;
-        y = addons(y);
+        x = addons(x) * reverse;
+        y = addons(y) * reverse;
         r = addons(r);
 
         /*

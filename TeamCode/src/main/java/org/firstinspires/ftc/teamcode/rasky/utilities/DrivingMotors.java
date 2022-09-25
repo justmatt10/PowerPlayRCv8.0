@@ -44,6 +44,7 @@ public class DrivingMotors {
         }
 
         //Reverse any motors if needed here:
-        //leftRear.setDirection(DcMotorSimple.Direction.REVERSE);
+        leftRear.setDirection(DcMotorSimple.Direction.REVERSE);
+        leftFront.setDirection(DcMotorSimple.Direction.REVERSE);
     }
 }

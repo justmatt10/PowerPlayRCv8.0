@@ -16,10 +16,11 @@ public class DriveEncodersTest extends LinearOpMode {
     DrivingMotors motors = new DrivingMotors();
     DebugDriveMode debugDriveMode;
     MecanumDriveMode mecanumDriveMode;
-    Gamepad gamepad = gamepad1;
+    Gamepad gamepad;
 
     @Override
     public void runOpMode() throws InterruptedException {
+        gamepad = gamepad1;
 
         motors.Init(hardwareMap, true, true);
         debugDriveMode = new DebugDriveMode(motors, gamepad);
@@ -28,7 +29,7 @@ public class DriveEncodersTest extends LinearOpMode {
         //This while loop will run after initialization until the program starts or until stop
         //is pressed
         while (!isStopRequested() && !opModeIsActive()) {
-            telemetry.addData("Initialization Ready", null);
+            telemetry.addData("Initialization Ready", " ");
             telemetry.update();
         }
 
