@@ -1,6 +1,8 @@
-package org.firstinspires.ftc.teamcode.rasky.utilities;
+package org.firstinspires.ftc.teamcode.rasky.components;
 
 import com.qualcomm.robotcore.hardware.Gamepad;
+
+import org.firstinspires.ftc.teamcode.rasky.utilities.DrivingMotors;
 
 //Author: Lucian
 public class DebugDriveMode {

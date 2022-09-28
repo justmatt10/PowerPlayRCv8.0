@@ -4,9 +4,9 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.Gamepad;
 
-import org.firstinspires.ftc.teamcode.rasky.utilities.DebugDriveMode;
+import org.firstinspires.ftc.teamcode.rasky.components.DebugDriveMode;
 import org.firstinspires.ftc.teamcode.rasky.utilities.DrivingMotors;
-import org.firstinspires.ftc.teamcode.rasky.utilities.MecanumDriveMode;
+import org.firstinspires.ftc.teamcode.rasky.components.RobotCentricDrive;
 
 
 //Author: Lucian
@@ -15,7 +15,7 @@ public class DriveEncodersTest extends LinearOpMode {
 
     DrivingMotors motors = new DrivingMotors();
     DebugDriveMode debugDriveMode;
-    MecanumDriveMode mecanumDriveMode;
+    RobotCentricDrive robotCentricDrive;
     Gamepad gamepad;
 
     @Override
@@ -24,7 +24,7 @@ public class DriveEncodersTest extends LinearOpMode {
 
         motors.Init(hardwareMap, true, true);
         debugDriveMode = new DebugDriveMode(motors, gamepad);
-        mecanumDriveMode = new MecanumDriveMode(motors, gamepad);
+        robotCentricDrive = new RobotCentricDrive(motors, gamepad);
 
         //This while loop will run after initialization until the program starts or until stop
         //is pressed
@@ -50,7 +50,7 @@ public class DriveEncodersTest extends LinearOpMode {
             if (debugMode) {
                 debugDriveMode.run();
             } else {
-                mecanumDriveMode.run();
+                robotCentricDrive.run();
             }
 
             telemetry.addData("Is Debug Mode On? : ", debugMode);

@@ -4,15 +4,21 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.Gamepad;
 
+import org.firstinspires.ftc.teamcode.rasky.components.FieldCentricDrive;
+import org.firstinspires.ftc.teamcode.rasky.utilities.Button;
 import org.firstinspires.ftc.teamcode.rasky.utilities.DrivingMotors;
-import org.firstinspires.ftc.teamcode.rasky.utilities.MecanumDriveMode;
+import org.firstinspires.ftc.teamcode.rasky.components.RobotCentricDrive;
+import org.firstinspires.ftc.teamcode.rasky.utilities.Gyroscope;
 
 //Author: Lucian
 @TeleOp(name = "MainDriving", group = "main")
 public class MainDrivingOp extends LinearOpMode {
 
     DrivingMotors motors = new DrivingMotors();
-    MecanumDriveMode mecanumDriveMode;
+    Gyroscope gyroscope = new Gyroscope();
+
+    RobotCentricDrive robotCentricDrive;
+    FieldCentricDrive fieldCentricDrive;
     Gamepad drivingGamepad;
 
     @Override
@@ -21,8 +27,10 @@ public class MainDrivingOp extends LinearOpMode {
         //Set the driving gamepad to the desired gamepad
         drivingGamepad = gamepad1;
 
+        gyroscope.Init(hardwareMap);
         motors.Init(hardwareMap, false, true);
-        mecanumDriveMode = new MecanumDriveMode(motors, drivingGamepad);
+        robotCentricDrive = new RobotCentricDrive(motors, drivingGamepad);
+        fieldCentricDrive = new FieldCentricDrive(motors, drivingGamepad, gyroscope);
 
         //This while loop will run after initialization until the program starts or until stop
         //is pressed
@@ -34,10 +42,21 @@ public class MainDrivingOp extends LinearOpMode {
         //This catches the stop button before the program starts
         if (isStopRequested()) return;
 
+        Button driveModeButton = new Button();
+
         //Main while loop that runs during the match
         while (opModeIsActive() && !isStopRequested()) {
+            driveModeButton.updateButton(drivingGamepad.x);
+            driveModeButton.shortPress();
+            driveModeButton.longPress();
 
-            mecanumDriveMode.run();
+            robotCentricDrive.setReverse(driveModeButton.getShortToggle());
+
+            if (!driveModeButton.getLongToggle()) {
+                robotCentricDrive.run();
+            } else {
+                fieldCentricDrive.run();
+            }
 
             telemetry.update();
         }

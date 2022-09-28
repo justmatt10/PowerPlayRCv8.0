@@ -1,21 +1,23 @@
-package org.firstinspires.ftc.teamcode.rasky.utilities;
+package org.firstinspires.ftc.teamcode.rasky.components;
 
 import com.qualcomm.robotcore.hardware.Gamepad;
 
+import org.firstinspires.ftc.teamcode.rasky.utilities.DrivingMotors;
+
 //Author: Lucian
-public class MecanumDriveMode {
+public class RobotCentricDrive {
 
     DrivingMotors motors;
     Gamepad gamepad;
 
     // Speed Multiplier
-    final double speed = 1.0;
+    double speed = 1.0;
     // If the Joystick has a lower value than this one the robot will not move
     final double controllerDeadzone = 0.15;
     // If the robot should move in reverse or not
     double reverse = 1.0;
 
-    public MecanumDriveMode(DrivingMotors motors, Gamepad gamepad) {
+    public RobotCentricDrive(DrivingMotors motors, Gamepad gamepad) {
         this.motors = motors;
         this.gamepad = gamepad;
     }
@@ -64,6 +66,14 @@ public class MecanumDriveMode {
         coord = coord * speed;
 
         return coord;
+    }
+
+    public void setReverse(boolean isReverse) {
+        if (isReverse) {
+            reverse = -1.0;
+        } else {
+            reverse = 1.0;
+        }
     }
 
 }
