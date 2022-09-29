@@ -6,9 +6,17 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 public class Button {
 
     boolean buttonValue = false;
+    boolean locked = false;
 
+    /**
+     * Updates the input.
+     * After an action is registered, an update is required before registering another action.
+     *
+     * @param input Button input
+     */
     public void updateButton(boolean input) {
         buttonValue = input;
+        locked = false;
     }
 
     /**
@@ -27,14 +35,17 @@ public class Button {
     /**
      * Asynchronous function that returns true if toggling changes
      *
-     * @return Toggle status
+     * @return Toggle press status
      */
     public boolean toggle() {
         lastIteration = currentIteration;
         currentIteration = buttonValue;
 
         if (!lastIteration && currentIteration) {
-            toggleStatus = !toggleStatus;
+            if (!locked) {
+                toggleStatus = !toggleStatus;
+            }
+            locked = true;
             return true;
         }
 
@@ -45,11 +56,10 @@ public class Button {
     boolean longPressLastIteration = false;
     boolean longPressCurrentIteration = false;
     boolean longToggle = false;
-    boolean locked = false;
     ElapsedTime longPressTimer = new ElapsedTime();
 
     /**
-     * Asynchronous function that returns true ONLY ONCE if the button is pressed
+     * Asynchronous function that returns true if the button is pressed
      * for a certain amount of time uninterrupted.
      *
      * @return Long pressed status
@@ -67,9 +77,11 @@ public class Button {
         }
 
         if (longPressLastIteration && longPressCurrentIteration
-                && longPressTimer.milliseconds() > longPressTime && !locked) {
+                && longPressTimer.milliseconds() > longPressTime) {
+            if (!locked) {
+                longToggle = !longToggle;
+            }
             locked = true;
-            longToggle = !longToggle;
             return true;
         }
 
@@ -83,7 +95,7 @@ public class Button {
     double shortPressTime = 500;
 
     /**
-     * Asynchronous function that returns true ONLY ONCE if the button is pressed
+     * Asynchronous function that returns true if the button is pressed
      * for LESS than a certain amount of time uninterrupted.
      *
      * @return Short pressed status
@@ -98,7 +110,10 @@ public class Button {
         if (shortLastIteration && !shortCurrentIteration
                 && shortTimer.milliseconds() < shortPressTime) {
             shortTimer.reset();
-            shortToggle = !shortToggle;
+            if (!locked) {
+                shortToggle = !shortToggle;
+            }
+            locked = true;
             return true;
         }
 
