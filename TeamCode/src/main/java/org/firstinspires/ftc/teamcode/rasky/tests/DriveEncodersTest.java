@@ -5,12 +5,13 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.Gamepad;
 
 import org.firstinspires.ftc.teamcode.rasky.components.DebugDriveMode;
+import org.firstinspires.ftc.teamcode.rasky.utilities.Constants;
 import org.firstinspires.ftc.teamcode.rasky.utilities.DrivingMotors;
 import org.firstinspires.ftc.teamcode.rasky.components.RobotCentricDrive;
 
 
 //Author: Lucian
-@TeleOp(name = "DriveEncodersTest", group = "tests")
+@TeleOp(name = "DriveEncoders Test", group = Constants.testGroup)
 public class DriveEncodersTest extends LinearOpMode {
 
     DrivingMotors motors = new DrivingMotors();
@@ -29,7 +30,10 @@ public class DriveEncodersTest extends LinearOpMode {
         //This while loop will run after initialization until the program starts or until stop
         //is pressed
         while (!isStopRequested() && !opModeIsActive()) {
-            telemetry.addData("Initialization Ready", " ");
+            telemetry.addLine("Initialization Ready");
+            telemetry.addLine("Instructions:");
+            telemetry.addLine("While running the test, press RIGHT_BUMPER to enter DebugDriveMode " +
+                    "or LEFT_BUMPER to exit DebugDriveMode");
             telemetry.update();
         }
 

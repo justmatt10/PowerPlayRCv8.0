@@ -6,12 +6,13 @@ import com.qualcomm.robotcore.hardware.Gamepad;
 
 import org.firstinspires.ftc.teamcode.rasky.components.FieldCentricDrive;
 import org.firstinspires.ftc.teamcode.rasky.utilities.Button;
+import org.firstinspires.ftc.teamcode.rasky.utilities.Constants;
 import org.firstinspires.ftc.teamcode.rasky.utilities.DrivingMotors;
 import org.firstinspires.ftc.teamcode.rasky.components.RobotCentricDrive;
 import org.firstinspires.ftc.teamcode.rasky.utilities.Gyroscope;
 
 //Author: Lucian
-@TeleOp(name = "MainDriving", group = "main")
+@TeleOp(name = "Main Driving", group = Constants.mainGroup)
 public class MainDrivingOp extends LinearOpMode {
 
     DrivingMotors motors = new DrivingMotors();
@@ -35,7 +36,7 @@ public class MainDrivingOp extends LinearOpMode {
         //This while loop will run after initialization until the program starts or until stop
         //is pressed
         while (!isStopRequested() && !opModeIsActive()) {
-            telemetry.addData("Initialization Ready", " ");
+            telemetry.addLine("Initialization Ready");
             telemetry.update();
         }
 
