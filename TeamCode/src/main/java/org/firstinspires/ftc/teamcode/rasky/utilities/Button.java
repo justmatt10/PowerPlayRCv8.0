@@ -132,6 +132,24 @@ public class Button {
         return longToggle;
     }
 
+    public void setToggleStatus(boolean status) {
+        toggleStatus = status;
+    }
+
+    public void setShortToggle(boolean status) {
+        shortToggle = status;
+    }
+
+    public void setLongToggle(boolean status) {
+        longToggle = status;
+    }
+
+    public void resetToggles() {
+        toggleStatus = false;
+        shortToggle = false;
+        longToggle = false;
+    }
+
     public void setLongPressTime(double milliseconds) {
         longPressTime = milliseconds;
     }

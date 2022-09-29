@@ -1,0 +1,73 @@
+package org.firstinspires.ftc.teamcode.rasky.tests;
+
+import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
+import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
+import com.qualcomm.robotcore.hardware.Gamepad;
+import com.qualcomm.robotcore.hardware.Servo;
+
+import org.firstinspires.ftc.teamcode.rasky.utilities.Button;
+import org.firstinspires.ftc.teamcode.rasky.utilities.Constants;
+
+//Author: Lucian
+@TeleOp(name = "Normal Servo Test", group = Constants.testGroup)
+public class NormalServoTest extends LinearOpMode {
+    Servo servo;
+    Gamepad gamepad;
+
+    enum ServoStates {
+        LEFT(0),
+        MIDDLE(0.5),
+        RIGHT(1);
+
+        double value = 0;
+
+        ServoStates(double value) {
+            this.value = value;
+        }
+    }
+
+    @Override
+    public void runOpMode() throws InterruptedException {
+        servo = hardwareMap.servo.get("servo");
+        gamepad = gamepad1;
+
+        //This while loop will run after initialization until the program starts or until stop
+        //is pressed
+        while (!isStopRequested() && !opModeIsActive()) {
+            telemetry.addLine("Initialization Ready");
+            telemetry.addLine("Instructions: ");
+            telemetry.addLine("Press DPad Left for the left most position, " +
+                    "Press DPad Up for the middle position, " +
+                    "Press DPad Right for the right most position");
+            telemetry.addLine("WARNING: THE SERVO WILL MOVE ON START");
+            telemetry.update();
+        }
+
+        //This catches the stop button before the program starts
+        if (isStopRequested()) return;
+
+        Button leftPos = new Button();
+        Button midPos = new Button();
+        Button rightPos = new Button();
+        //Main while loop that runs during the match
+        while (opModeIsActive() && !isStopRequested()) {
+            ServoStates state = ServoStates.MIDDLE;
+            leftPos.updateButton(gamepad.dpad_left);
+            midPos.updateButton(gamepad.dpad_up);
+            rightPos.updateButton(gamepad.dpad_right);
+
+            if (midPos.toggle()) {
+                state = ServoStates.MIDDLE;
+            } else if (leftPos.toggle()) {
+                state = ServoStates.LEFT;
+            } else if (rightPos.toggle()) {
+                state = ServoStates.RIGHT;
+            }
+
+            servo.setPosition(state.value);
+
+            telemetry.addData("Servo Position: ", state.name());
+            telemetry.update();
+        }
+    }
+}
