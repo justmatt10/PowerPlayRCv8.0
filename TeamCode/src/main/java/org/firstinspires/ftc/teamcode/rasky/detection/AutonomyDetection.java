@@ -12,7 +12,12 @@ import org.openftc.easyopencv.OpenCvCameraRotation;
 
 import java.util.ArrayList;
 
-//Author: Lucian
+/**
+ * Class meant for detection of April Tags during the autonomy period.
+ *
+ * @author Lucian
+ * @version 1.0
+ */
 public class AutonomyDetection {
 
     OpenCvCamera camera;
@@ -33,7 +38,7 @@ public class AutonomyDetection {
     // UNITS ARE METERS
     double tagsize = 0.166;
 
-    int ID_TAG_OF_INTEREST = 1; // Tag ID 18 from the 36h11 family
+    int ID_TAG_OF_INTEREST = 1; // Tag ID from the 36h11 family
 
     AprilTagDetection tagOfInterest = null;
     int cameraMonitorViewId;
@@ -57,6 +62,11 @@ public class AutonomyDetection {
         });
     }
 
+    /**
+     * This method returns the first April Tag detected on the camera's view.
+     *
+     * @return The AprilTag detected
+     */
     public AprilTagDetection detect() {
         ArrayList<AprilTagDetection> currentDetections = aprilTagDetectionPipeline.getLatestDetections();
         if (currentDetections.size() == 0)

@@ -2,11 +2,22 @@ package org.firstinspires.ftc.teamcode.rasky.utilities;
 
 import com.qualcomm.robotcore.util.ElapsedTime;
 
-//Author: Lucian
+/**
+ * This class handles buttons. It can easily make an object that handles: Presses, Toggles
+ * Short Presses, Long Presses, etc...
+ * <p>
+ * All of the methods are Asynchronous and the update method should be called once per loop
+ * at the beginning with the desired button.
+ *
+ * @author Lucian
+ * @version 1.2
+ */
 public class Button {
 
     boolean buttonValue = false;
-    boolean locked = false;
+    boolean lockedShort = false;
+    boolean lockedLong = false;
+    boolean lockedToggle = false;
 
     /**
      * Updates the input.
@@ -16,7 +27,6 @@ public class Button {
      */
     public void updateButton(boolean input) {
         buttonValue = input;
-        locked = false;
     }
 
     /**
@@ -42,11 +52,13 @@ public class Button {
         currentIteration = buttonValue;
 
         if (!lastIteration && currentIteration) {
-            if (!locked) {
+            if (!lockedToggle) {
                 toggleStatus = !toggleStatus;
             }
-            locked = true;
+            lockedToggle = true;
             return true;
+        } else {
+            lockedToggle = false;
         }
 
         return false;
@@ -78,11 +90,14 @@ public class Button {
 
         if (longPressLastIteration && longPressCurrentIteration
                 && longPressTimer.milliseconds() > longPressTime) {
-            if (!locked) {
+            if (!lockedLong) {
                 longToggle = !longToggle;
+                lockedLong = true;
+                return true;
             }
-            locked = true;
-            return true;
+            return false;
+        } else {
+            lockedLong = false;
         }
 
         return false;
@@ -110,11 +125,13 @@ public class Button {
         if (shortLastIteration && !shortCurrentIteration
                 && shortTimer.milliseconds() < shortPressTime) {
             shortTimer.reset();
-            if (!locked) {
+            if (!lockedShort) {
                 shortToggle = !shortToggle;
+                lockedShort = true;
             }
-            locked = true;
             return true;
+        } else {
+            lockedShort = false;
         }
 
         return false;

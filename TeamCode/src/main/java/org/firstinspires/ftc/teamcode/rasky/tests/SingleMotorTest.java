@@ -9,7 +9,12 @@ import com.qualcomm.robotcore.hardware.Gamepad;
 import org.firstinspires.ftc.teamcode.rasky.utilities.Button;
 import org.firstinspires.ftc.teamcode.rasky.utilities.Constants;
 
-//Author: Lucian
+/**
+ * Class meant for testing a single motor.
+ *
+ * @author Lucian
+ * @version 1.0
+ */
 @TeleOp(name = "Single Motor Test", group = Constants.testGroup)
 public class SingleMotorTest extends LinearOpMode {
 

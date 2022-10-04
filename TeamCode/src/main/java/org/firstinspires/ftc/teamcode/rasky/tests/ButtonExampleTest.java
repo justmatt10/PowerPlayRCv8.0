@@ -3,11 +3,20 @@ package org.firstinspires.ftc.teamcode.rasky.tests;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.Gamepad;
+import com.qualcomm.robotcore.util.ElapsedTime;
 
 import org.firstinspires.ftc.teamcode.rasky.utilities.Button;
 import org.firstinspires.ftc.teamcode.rasky.utilities.Constants;
 
-//Author: Lucian
+/**
+ * <p>
+ * This class is meant as a demonstration / test of the Button.java class.
+ * <p>
+ * It uses 3 buttons, one normal press, one toggle and one time based (short / long).
+ *
+ * @author Lucian
+ * @version 1.1
+ */
 @TeleOp(name = "Button Example Test", group = Constants.testGroup)
 public class ButtonExampleTest extends LinearOpMode {
 
@@ -36,11 +45,16 @@ public class ButtonExampleTest extends LinearOpMode {
         if (isStopRequested()) return;
 
 
+        int changedStatus = 0;
         //Main while loop that runs during the match
         while (opModeIsActive() && !isStopRequested()) {
             normalPress.updateButton(gamepad.x);
             toggleBasedPress.updateButton(gamepad.y);
             timeBasedPress.updateButton(gamepad.b);
+
+            if (timeBasedPress.longPress() || timeBasedPress.shortPress())
+                changedStatus++;
+
 
             telemetry.addData("Normal Press Status: ", normalPress.press());
             telemetry.addData("Toggle Press Status: ", toggleBasedPress.toggle());
@@ -49,6 +63,8 @@ public class ButtonExampleTest extends LinearOpMode {
             telemetry.addData("Short Press Toggle Status: ", timeBasedPress.getShortToggle());
             telemetry.addData("Long Press Status: ", timeBasedPress.longPress());
             telemetry.addData("Long Press Toggle Status: ", timeBasedPress.getLongToggle());
+            telemetry.addData("Statuses Changed: ", changedStatus);
+
             telemetry.update();
         }
 

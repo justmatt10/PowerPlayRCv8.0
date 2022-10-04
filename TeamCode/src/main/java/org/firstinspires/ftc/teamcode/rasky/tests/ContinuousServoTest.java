@@ -10,7 +10,12 @@ import com.qualcomm.robotcore.hardware.Gamepad;
 import org.firstinspires.ftc.teamcode.rasky.utilities.Button;
 import org.firstinspires.ftc.teamcode.rasky.utilities.Constants;
 
-//Author: Lucian
+/**
+ * Class for testing Continuous Rotation Servos.
+ *
+ * @author Lucian
+ * @version 1.0
+ */
 @TeleOp(name = "Continuous Servo Test", group = Constants.testGroup)
 public class ContinuousServoTest extends LinearOpMode {
 

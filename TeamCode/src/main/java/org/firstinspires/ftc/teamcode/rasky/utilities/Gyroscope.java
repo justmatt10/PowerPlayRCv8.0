@@ -3,7 +3,12 @@ package org.firstinspires.ftc.teamcode.rasky.utilities;
 import com.qualcomm.hardware.bosch.BNO055IMU;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
-//Author: Lucian
+/**
+ * Wrapper class for the Control Hub Gyroscope.
+ *
+ * @author Lucian
+ * @version 1.0
+ */
 public class Gyroscope {
     BNO055IMU imu;
 

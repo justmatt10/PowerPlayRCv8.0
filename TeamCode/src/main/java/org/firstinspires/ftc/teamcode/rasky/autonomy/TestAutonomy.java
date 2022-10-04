@@ -6,7 +6,12 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import org.firstinspires.ftc.teamcode.rasky.detection.AutonomyDetection;
 import org.openftc.apriltag.AprilTagDetection;
 
-//Author: Lucian
+/**
+ * Visually see and test Road Runner trajectories using MeepMeep.
+ *
+ * @author Lucian
+ * @version 1.0
+ */
 @Autonomous(name = "Test Autonomy", group = "tests")
 public class TestAutonomy extends LinearOpMode {
 

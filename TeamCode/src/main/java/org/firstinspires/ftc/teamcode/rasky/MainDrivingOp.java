@@ -11,7 +11,12 @@ import org.firstinspires.ftc.teamcode.rasky.utilities.DrivingMotors;
 import org.firstinspires.ftc.teamcode.rasky.components.RobotCentricDrive;
 import org.firstinspires.ftc.teamcode.rasky.utilities.Gyroscope;
 
-//Author: Lucian
+/**
+ * The main TeleOP for the driving period of the game.
+ *
+ * @author Lucian
+ * @version 1.2
+ */
 @TeleOp(name = "Main Driving", group = Constants.mainGroup)
 public class MainDrivingOp extends LinearOpMode {
 

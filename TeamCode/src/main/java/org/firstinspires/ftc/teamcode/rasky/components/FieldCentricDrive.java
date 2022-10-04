@@ -6,7 +6,12 @@ import com.qualcomm.robotcore.hardware.Gamepad;
 import org.firstinspires.ftc.teamcode.rasky.utilities.DrivingMotors;
 import org.firstinspires.ftc.teamcode.rasky.utilities.Gyroscope;
 
-//Author: Lucian
+/**
+ * FieldCentric version of the class RobotCentricDrive.java
+ *
+ * @author Lucian
+ * @version 1.1
+ */
 public class FieldCentricDrive {
 
     DrivingMotors motors;

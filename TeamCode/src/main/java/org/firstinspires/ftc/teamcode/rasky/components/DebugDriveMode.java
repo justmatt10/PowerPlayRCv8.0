@@ -4,7 +4,12 @@ import com.qualcomm.robotcore.hardware.Gamepad;
 
 import org.firstinspires.ftc.teamcode.rasky.utilities.DrivingMotors;
 
-//Author: Lucian
+/**
+ * Class meant for individually testing each of the motors on the robot for problems.
+ *
+ * @author Lucian
+ * @version 1.0
+ */
 public class DebugDriveMode {
 
     DrivingMotors motors;

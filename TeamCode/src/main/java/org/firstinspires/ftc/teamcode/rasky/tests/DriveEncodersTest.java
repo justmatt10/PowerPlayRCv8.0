@@ -10,7 +10,15 @@ import org.firstinspires.ftc.teamcode.rasky.utilities.DrivingMotors;
 import org.firstinspires.ftc.teamcode.rasky.components.RobotCentricDrive;
 
 
-//Author: Lucian
+/**
+ * <p>
+ * Class meant for testing the encoders on the drive wheels.
+ * <p>
+ * It gets and shows the encoder position of each motor and has a debug test for individual testing.
+ *
+ * @author Lucian
+ * @version 1.0
+ */
 @TeleOp(name = "DriveEncoders Test", group = Constants.testGroup)
 public class DriveEncodersTest extends LinearOpMode {
 

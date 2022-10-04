@@ -4,7 +4,12 @@ import com.qualcomm.robotcore.hardware.Gamepad;
 
 import org.firstinspires.ftc.teamcode.rasky.utilities.DrivingMotors;
 
-//Author: Lucian
+/**
+ * Basic, Joystick based, mecanum drive.
+ *
+ * @author Lucian
+ * @version 1.2
+ */
 public class RobotCentricDrive {
 
     DrivingMotors motors;

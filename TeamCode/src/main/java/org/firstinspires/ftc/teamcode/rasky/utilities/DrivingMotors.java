@@ -8,7 +8,16 @@ import com.qualcomm.robotcore.hardware.HardwareMap;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-//Author: Lucian
+/**
+ * <p>
+ * A class that handles all of the 4 driving motors.
+ * <p>
+ * It initializes all of the motors given a set of parameters and then they are ready to use
+ * through the object.
+ *
+ * @author Lucian
+ * @version 1.1
+ */
 public class DrivingMotors {
     public DcMotorEx leftRear, rightRear, leftFront, rightFront;
 
