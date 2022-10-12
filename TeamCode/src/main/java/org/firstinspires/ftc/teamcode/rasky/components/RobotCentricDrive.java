@@ -2,6 +2,7 @@ package org.firstinspires.ftc.teamcode.rasky.components;
 
 import com.qualcomm.robotcore.hardware.Gamepad;
 
+import org.firstinspires.ftc.robotcore.external.Telemetry;
 import org.firstinspires.ftc.teamcode.rasky.utilities.DrivingMotors;
 
 /**
@@ -79,6 +80,21 @@ public class RobotCentricDrive {
         } else {
             reverse = 1.0;
         }
+    }
+
+    public void showInfo(Telemetry telemetry) {
+        telemetry.addData("Direction Multiplier: ", reverse);
+        telemetry.addData("Speed Multiplier: ", speed);
+
+        telemetry.addData("LeftRear Position: ", motors.leftRear.getCurrentPosition());
+        telemetry.addData("RightRear Position: ", motors.rightRear.getCurrentPosition());
+        telemetry.addData("LeftFront Position: ", motors.leftFront.getCurrentPosition());
+        telemetry.addData("RightFront Position: ", motors.rightFront.getCurrentPosition());
+
+        telemetry.addData("LeftRear Power: ", motors.leftRear.getPower());
+        telemetry.addData("RightRear Power: ", motors.rightRear.getPower());
+        telemetry.addData("LeftFront Power: ", motors.leftFront.getPower());
+        telemetry.addData("RightFront Power: ", motors.rightFront.getPower());
     }
 
 }

@@ -3,6 +3,7 @@ package org.firstinspires.ftc.teamcode.rasky.components;
 import com.qualcomm.hardware.bosch.BNO055IMU;
 import com.qualcomm.robotcore.hardware.Gamepad;
 
+import org.firstinspires.ftc.robotcore.external.Telemetry;
 import org.firstinspires.ftc.teamcode.rasky.utilities.DrivingMotors;
 import org.firstinspires.ftc.teamcode.rasky.utilities.Gyroscope;
 
@@ -10,7 +11,7 @@ import org.firstinspires.ftc.teamcode.rasky.utilities.Gyroscope;
  * FieldCentric version of the class RobotCentricDrive.java
  *
  * @author Lucian
- * @version 1.1
+ * @version 1.2
  */
 public class FieldCentricDrive {
 
@@ -80,6 +81,21 @@ public class FieldCentricDrive {
         coord = coord * speed;
 
         return coord;
+    }
+
+    public void showInfo(Telemetry telemetry) {
+        telemetry.addData("Speed Multiplier: ", speed);
+        telemetry.addData("Robot Angle: ", gyroscope.getHeading());
+
+        telemetry.addData("LeftRear Position: ", motors.leftRear.getCurrentPosition());
+        telemetry.addData("RightRear Position: ", motors.rightRear.getCurrentPosition());
+        telemetry.addData("LeftFront Position: ", motors.leftFront.getCurrentPosition());
+        telemetry.addData("RightFront Position: ", motors.rightFront.getCurrentPosition());
+
+        telemetry.addData("LeftRear Power: ", motors.leftRear.getPower());
+        telemetry.addData("RightRear Power: ", motors.rightRear.getPower());
+        telemetry.addData("LeftFront Power: ", motors.leftFront.getPower());
+        telemetry.addData("RightFront Power: ", motors.rightFront.getPower());
     }
 
 }
