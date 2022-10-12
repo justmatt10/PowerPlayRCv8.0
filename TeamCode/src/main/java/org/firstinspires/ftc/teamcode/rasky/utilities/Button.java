@@ -10,7 +10,7 @@ import com.qualcomm.robotcore.util.ElapsedTime;
  * at the beginning with the desired button.
  *
  * @author Lucian
- * @version 1.2
+ * @version 1.3
  */
 public class Button {
 
@@ -54,9 +54,11 @@ public class Button {
         if (!lastIteration && currentIteration) {
             if (!lockedToggle) {
                 toggleStatus = !toggleStatus;
+                lockedToggle = true;
+                return true;
             }
-            lockedToggle = true;
-            return true;
+            return false;
+
         } else {
             lockedToggle = false;
         }
@@ -64,7 +66,7 @@ public class Button {
         return false;
     }
 
-    double longPressTime = 2000;
+    double longPressTime = 1000;
     boolean longPressLastIteration = false;
     boolean longPressCurrentIteration = false;
     boolean longToggle = false;

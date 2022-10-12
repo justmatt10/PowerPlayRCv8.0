@@ -17,12 +17,12 @@ import org.firstinspires.ftc.teamcode.rasky.components.RobotCentricDrive;
  * It gets and shows the encoder position of each motor and has a debug test for individual testing.
  *
  * @author Lucian
- * @version 1.0
+ * @version 1.1
  */
 @TeleOp(name = "DriveEncoders Test", group = Constants.testGroup)
 public class DriveEncodersTest extends LinearOpMode {
 
-    DrivingMotors motors = new DrivingMotors();
+    DrivingMotors motors;
     DebugDriveMode debugDriveMode;
     RobotCentricDrive robotCentricDrive;
     Gamepad gamepad;
@@ -31,7 +31,9 @@ public class DriveEncodersTest extends LinearOpMode {
     public void runOpMode() throws InterruptedException {
         gamepad = gamepad1;
 
-        motors.Init(hardwareMap, true, true);
+        motors = new DrivingMotors(hardwareMap);
+        motors.Init(true, true);
+
         debugDriveMode = new DebugDriveMode(motors, gamepad);
         robotCentricDrive = new RobotCentricDrive(motors, gamepad);
 

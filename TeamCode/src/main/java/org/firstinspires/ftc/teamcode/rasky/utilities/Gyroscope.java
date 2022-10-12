@@ -7,12 +7,17 @@ import com.qualcomm.robotcore.hardware.HardwareMap;
  * Wrapper class for the Control Hub Gyroscope.
  *
  * @author Lucian
- * @version 1.0
+ * @version 1.1
  */
 public class Gyroscope {
     BNO055IMU imu;
+    HardwareMap hardwareMap;
 
-    public void Init(HardwareMap hardwareMap) {
+    public Gyroscope(HardwareMap hardwareMap) {
+        this.hardwareMap = hardwareMap;
+    }
+
+    public void Init() {
 
         // Retrieve the IMU from the hardware map
         imu = hardwareMap.get(BNO055IMU.class, "imu");

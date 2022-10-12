@@ -16,20 +16,24 @@ import java.util.Arrays;
  * through the object.
  *
  * @author Lucian
- * @version 1.1
+ * @version 1.3
  */
 public class DrivingMotors {
     public DcMotorEx leftRear, rightRear, leftFront, rightFront;
+    HardwareMap hardwareMap;
+
+    public DrivingMotors(HardwareMap hardwareMap) {
+        this.hardwareMap = hardwareMap;
+    }
 
     /**
      * This method initializes each driving motor to be easily accessed from the
      * object when testing.
      *
-     * @param hardwareMap The hardware map passed from the OpMode calling
-     * @param encoders    Boolean value that checks if motor encoders should be used or not
-     * @param brakes      Boolean value that checks if the motors should brake or stop on their own
+     * @param encoders Boolean value that checks if motor encoders should be used or not
+     * @param brakes   Boolean value that checks if the motors should brake or stop on their own
      */
-    public void Init(HardwareMap hardwareMap, Boolean encoders, Boolean brakes) {
+    public void Init(Boolean encoders, Boolean brakes) {
         leftRear = hardwareMap.get(DcMotorEx.class, "leftRear");
         rightRear = hardwareMap.get(DcMotorEx.class, "rightRear");
         leftFront = hardwareMap.get(DcMotorEx.class, "leftFront");
