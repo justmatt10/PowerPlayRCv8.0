@@ -5,6 +5,7 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.Gamepad;
 
 import org.firstinspires.ftc.teamcode.rasky.components.FieldCentricDrive;
+import org.firstinspires.ftc.teamcode.rasky.components.LiftSystem;
 import org.firstinspires.ftc.teamcode.rasky.utilities.Button;
 import org.firstinspires.ftc.teamcode.rasky.utilities.Constants;
 import org.firstinspires.ftc.teamcode.rasky.utilities.DrivingMotors;
@@ -20,21 +21,32 @@ import org.firstinspires.ftc.teamcode.rasky.utilities.Gyroscope;
 @TeleOp(name = "Main Driving", group = Constants.mainGroup)
 public class MainDrivingOp extends LinearOpMode {
 
-    DrivingMotors motors = new DrivingMotors();
-    Gyroscope gyroscope = new Gyroscope();
+    DrivingMotors motors;
+    Gyroscope gyroscope;
 
     RobotCentricDrive robotCentricDrive;
     FieldCentricDrive fieldCentricDrive;
+    LiftSystem liftSystem;
+
     Gamepad drivingGamepad;
+    Gamepad utilityGamepad;
 
     @Override
     public void runOpMode() throws InterruptedException {
 
-        //Set the driving gamepad to the desired gamepad
+        //Set the gamepads to the desired gamepad
         drivingGamepad = gamepad1;
+        utilityGamepad = gamepad2;
 
-        gyroscope.Init(hardwareMap);
-        motors.Init(hardwareMap, false, true);
+        motors = new DrivingMotors(hardwareMap);
+        motors.Init(false, true);
+
+        liftSystem = new LiftSystem(hardwareMap, utilityGamepad);
+        liftSystem.Init();
+
+        gyroscope = new Gyroscope(hardwareMap);
+        gyroscope.Init();
+
         robotCentricDrive = new RobotCentricDrive(motors, drivingGamepad);
         fieldCentricDrive = new FieldCentricDrive(motors, drivingGamepad, gyroscope);
 
@@ -63,6 +75,9 @@ public class MainDrivingOp extends LinearOpMode {
             } else {
                 fieldCentricDrive.run();
             }
+
+            liftSystem.run();
+            liftSystem.showInfo(telemetry);
 
             telemetry.update();
         }
