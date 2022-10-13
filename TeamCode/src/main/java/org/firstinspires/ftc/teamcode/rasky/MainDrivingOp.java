@@ -29,19 +29,19 @@ public class MainDrivingOp extends LinearOpMode {
     LiftSystem liftSystem;
 
     Gamepad drivingGamepad;
-    Gamepad utilityGamepad;
+    Gamepad Gamepadutility;
 
     @Override
     public void runOpMode() throws InterruptedException {
 
         //Set the gamepads to the desired gamepad
         drivingGamepad = gamepad1;
-        utilityGamepad = gamepad2;
+        Gamepadutility = gamepad2;
 
         motors = new DrivingMotors(hardwareMap);
         motors.Init(false, true);
 
-        liftSystem = new LiftSystem(hardwareMap, utilityGamepad);
+        liftSystem = new LiftSystem(hardwareMap, Gamepadutility);
         liftSystem.Init();
 
         gyroscope = new Gyroscope(hardwareMap);
